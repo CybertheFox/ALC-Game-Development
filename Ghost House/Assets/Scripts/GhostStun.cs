@@ -32,16 +32,17 @@ public class GhostStun : MonoBehaviour {
 		if(other.gameObject.name == "Ghost" && flash == true){
 			print("Ghost is Stunned!");
 			// other.GetCompnent<Rigidbody>().velocity = Vector3.zero;
-			// other.GetCompnent<Rigidbody>().angularVelocity = Vector3.zero
+			// other.GetCompnent<Rigidbody>().angularVelocity = Vector3.zero;
+
 			other.GetComponent<GhostAI>().moveSpeed = 0f;
-			StartCoroutine(Wait(5));	
+			StartCoroutine(Wait(5, other));	
 			// StopCoroutine(Wait(5));	
 		}
 	}
 
-	IEnumerator Wait(float time){
-		yield return new WaitForSeconds(time);
-		ghost.GetComponent<GhostAI>().moveSpeed = 5f;
-		print("Ghost is unstunned");
+	IEnumerator Wait(float time, Collider other){
+			yield return new WaitForSeconds(time);
+			ghost.gameObject.GetComponent<GhostAI>().moveSpeed = 5f;
+			print("Ghost is unstunned");
 	}
 }
