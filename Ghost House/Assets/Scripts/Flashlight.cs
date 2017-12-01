@@ -43,7 +43,7 @@ public class Flashlight : MonoBehaviour {
 		}
 
 		else if (Input.GetKeyUp (KeyCode.F) && !lightOn){
-			print("Light Off");
+			print("Light On");
 			lightOn = true;
 			light.enabled = true;
 		}
@@ -51,7 +51,7 @@ public class Flashlight : MonoBehaviour {
 		//Update Battery UI text
 		batteryText.text = currentPower.ToString();
 
-		//Drain Batter Life
+		//Drain Battery Life
 		if(currentPower > 0){
 			StartCoroutine(BatteryDrain(batDrainDelay,batDrainAmt));
 		}
@@ -66,11 +66,11 @@ public class Flashlight : MonoBehaviour {
 	
 	}
 
-	IEnumerator Battery(float delay, int amount){
+	IEnumerator BatteryDrain(float delay, int amount){
 		yield return new WaitForSeconds(delay);
 		currentPower -= amount;
 		if(currentPower <= 0){
-			current Power = 0;
+			currentPower = 0;
 			print("Battery is dead!");
 			light.enabled = false;
 	
