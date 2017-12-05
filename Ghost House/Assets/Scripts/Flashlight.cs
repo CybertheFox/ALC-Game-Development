@@ -1,23 +1,31 @@
-﻿using UnityEngine;
+﻿//ToggleLight.cs
+//Turn the light omponent of this object on/off when the user presses and releases the 'L' key
+
+using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.UI;
 
 public class Flashlight : MonoBehaviour {
 
+
+	//Flashlight on/off
 	public bool lightOn = true;
 	//Flashlight Power capacity
 	public int maxPower = 4;
 	//Usable flashlight power
 	public int currentPower;
-
+	//Flashlight Drain Amount;
 	public int batDrainAmt;
-
+	//Flashlight Drain Delay;
 	public float batDrainDelay;
-
+	//Stores light object
 	Light light;
-
-	//Gets Battery UI Text
+	//Battery drain on/off
+	bool draing = false;
+	//Count interger
+	long count = 0
+	//Battery UI Text
 	public Text batteryText;
 
 	// Use this for initialization
@@ -27,6 +35,7 @@ public class Flashlight : MonoBehaviour {
 		print("power = " + currentPower);
 
 		light = GetComponent<Light> ();
+		//Set Light default to ON
 		lightOn = true;
 		print("Turn light on when Flashlight is initiated");
 		light.enabled = true;
@@ -51,30 +60,44 @@ public class Flashlight : MonoBehaviour {
 		//Update Battery UI text
 		batteryText.text = currentPower.ToString();
 
-		//Drain Battery Life
+
 		if(currentPower > 0){
+			if(!draining){
 			StartCoroutine(BatteryDrain(batDrainDelay,batDrainAmt));
+			}
+			else if(currentPower <= 0){
+				lightOn = false;
+				light.enabled = false;
+			}
 		}
 	}
-
+	//Turns light on when called
 	public void setLightOn(){
 		lightOn = true;
 	}
-
+	//Returns if light is on
 	public bool isLightOn(){
 		return lightOn;
 	
 	}
-
+	//Drain Bettery Life
 	IEnumerator BatteryDrain(float delay, int amount){
-		yield return new WaitForSeconds(delay);
-		currentPower -= amount;
+		if(light){
+			draining = true;
+			yield return new WaitForSeconds(delay);
+			print(currentPower);
+			currentPower -= amount;
+		}
+
+
 		if(currentPower <= 0){
 			currentPower = 0;
 			print("Battery is dead!");
-			light.enabled = false;
-	
+			light.endabled = false;
+		
 		}
+
+		draining = false;
 	}
 
 }
