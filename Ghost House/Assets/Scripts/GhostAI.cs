@@ -8,6 +8,7 @@ public class GhostAI : MonoBehaviour {
 	public int damage;
 
 
+
 	void OnTriggerStay(Collider other) 
 	{
 		if(other.gameObject.name == "Player"){

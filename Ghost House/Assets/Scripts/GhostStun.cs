@@ -15,7 +15,7 @@ public class GhostStun : MonoBehaviour {
 		flash = gameObject.GetComponentInChildren<Light>().GetComponentInChildren<Flashlight>();
 		//bool test = gameObject.GetComponentInChildren<Light>().Flashlight.isLightOn();
 		//print("Test;" + test);
-		print("Obj" + flash);
+		print("Obj:" + flash);
 		flash.setLightOn();
 		print ("Start" + flash.isLightOn ());
 
@@ -36,7 +36,8 @@ public class GhostStun : MonoBehaviour {
 
 			other.GetComponent<GhostAI>().moveSpeed = 0f;
 			StartCoroutine(Wait(5, other));	
-			// StopCoroutine(Wait(5));	
+			// StopCoroutine(Wait(5));
+
 		}
 	}
 
@@ -44,5 +45,10 @@ public class GhostStun : MonoBehaviour {
 			yield return new WaitForSeconds(time);
 			ghost.gameObject.GetComponent<GhostAI>().moveSpeed = 5f;
 			print("Ghost is unstunned");
+	
 	}
+
+
+
+	
 }

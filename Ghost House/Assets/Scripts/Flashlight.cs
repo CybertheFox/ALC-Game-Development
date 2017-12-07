@@ -22,9 +22,9 @@ public class Flashlight : MonoBehaviour {
 	//Stores light object
 	Light light;
 	//Battery drain on/off
-	bool draing = false;
+	bool draining = false;
 	//Count interger
-	long count = 0
+	long count = 0;
 	//Battery UI Text
 	public Text batteryText;
 
@@ -80,7 +80,7 @@ public class Flashlight : MonoBehaviour {
 		return lightOn;
 	
 	}
-	//Drain Bettery Life
+	//Drain Battery Life
 	IEnumerator BatteryDrain(float delay, int amount){
 		if(light){
 			draining = true;
@@ -93,7 +93,7 @@ public class Flashlight : MonoBehaviour {
 		if(currentPower <= 0){
 			currentPower = 0;
 			print("Battery is dead!");
-			light.endabled = false;
+			light.enabled = false;
 		
 		}
 
