@@ -1,5 +1,5 @@
 ﻿//ToggleLight.cs
-//Turn the light omponent of this object on/off when the user presses and releases the 'L' key
+//Turn the light component of this object on/off when the user presses and releases the 'L' key
 
 using UnityEngine;
 using System.Collections.Generic;
